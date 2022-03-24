@@ -121,3 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+#STATIC_ROOT = '' #todo
+
+MEDIA_URL = '/media/'  # 미디어파일을 URL을통해 접근할때 쓰인다. 이미지 웹경로?
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #BASE_DIR/media 에 미디어 파일 받아서 저장
