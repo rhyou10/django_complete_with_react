@@ -17,6 +17,9 @@ class Post(models.Model):
         #return f"Custom Post objects ({self.id}) " 
         return f"{self.pk} : {self.message}"
 
+    class Meta: # 기본정렬 default 정렬
+        ordering = ['-id']
+
     # def message_length(self):
     #     return len(self.message)
     # message_length.short_description = "메시지 글자수" ## admin에서 display_list 할경우 colunm 이름 변경
