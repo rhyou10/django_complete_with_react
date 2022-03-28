@@ -40,13 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #third apps
     'django_extensions',
+    "debug_toolbar",
     #locals apps
     'blog1',
     'instagram',
     'practice',
+    'accounts',
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'askcompany.urls'
@@ -129,3 +133,9 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'  # 미디어파일을 URL을통해 접근할때 쓰인다. 이미지 웹경로?
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #BASE_DIR/media 에 미디어 파일 받아서 저장
+
+INTERNAL_IPS = [ #django_debug_toolbar를 위해서
+    # ...
+    "127.0.0.1",
+    # ...
+]

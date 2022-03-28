@@ -28,11 +28,17 @@ urlpatterns = [
     path('blog1/', include('blog1.urls')),
     path('pratice/', include('practice.urls')),
     path('instagram/', include('instagram.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 if settings.DEBUG: #DEBUG가 참일떄만 개발모드일때만 True임
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
     #하는 이유 settings.py에 MEDIA_URL 설정해 두었지만 urls에서 페이지설정 따로하지않아 urlpatterns에 추가해야 해당 파일 url 사용가능
+
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include('debug_toolbar.urls')),
+    ]
 
 #askcompany setting을 가지고왔다.
 #settings.MEDIA_URL
