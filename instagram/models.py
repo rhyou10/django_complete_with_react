@@ -9,6 +9,7 @@ class Post(models.Model):
     message = models.TextField()
     photo = models.ImageField(blank=True, upload_to='instagram/post/%Y%m%d') #upload setting에 설정된 media 안에 저장폴더 상세설정(너무많은 media 파일들을 관리하기위하여)
                                                                              # 이때 저장장소를 함수로 설정할경우(문자열로 반환) 파일명을 원하는 것으로 변경 가능
+    tag_set = models.ManyToManyField('Tag', blank=True) #다대 다인경우 blank가 필요할수 있다.
     is_public = models.BooleanField(default=False, verbose_name='공개여부')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -35,3 +36,10 @@ class Comment(models.Model):  # 1 : N ForeingKey의 경우 N에 명시하면 된
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    #post_set = models.ManyToManyField(Post)
+
+    def __str__(self) :
+        return self.name

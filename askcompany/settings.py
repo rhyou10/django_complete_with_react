@@ -125,6 +125,8 @@ USE_L10N = True
 USE_TZ = True
 
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField' # 3.2버전부터 primary key의 속성을 정해줘야한다.(전체 속성 선택)/ apps.py 에서 앱마다도 설정가능하다.
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 

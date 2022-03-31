@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 from django.utils.safestring import mark_safe # 안전하다는것을 표시하여 이미지로 표시될수있다.
 
 #admin.site.register(Post) #모델등록 첫번쨰 방법
@@ -32,4 +32,8 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
     pass
