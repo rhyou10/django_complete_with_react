@@ -1,0 +1,9 @@
+<h2>{{post.author}}</h2>
+
+
+{% if post.photo %}
+    <div>
+    <img src="{{post.photo.url}}" style="height: 100px;">
+</div>
+{% endif %}
+{{post.message}}
