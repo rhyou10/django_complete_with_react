@@ -21,9 +21,15 @@ from django.urls import path, include
 from django.conf import settings # 위에 두개를 한번에 사용가능
 
 from django.conf.urls.static import static
-
+from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
+    #path('',TemplateView.as_view(template_name='root.html'), name='root'),
+    path('',RedirectView.as_view(
+        #url = "/instagram/"
+        pattern_name = "instagram:post_list", #url_reverse app_name과 path 인자 name 지정되있을떄 사용가능
+        ), name='root'),
+
     path('admin/', admin.site.urls),
     path('blog1/', include('blog1.urls')),
     path('pratice/', include('practice.urls')),
