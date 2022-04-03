@@ -4,7 +4,7 @@ from urllib import response
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render,get_object_or_404
 from .models import Post
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 post_list = ListView.as_view(model = Post) #클래스 기반 뷰 아직 검색기능 미구현
 
@@ -24,19 +24,20 @@ post_list = ListView.as_view(model = Post) #클래스 기반 뷰 아직 검색�
 
 #아래 : --> type형태에 대한 hint의 라고 보면된다. 타입틀려도 eror x
 
-def post_detail(request:HttpRequest, pk : int):# -> HttpResponse:
-    # try:
-    #     post = Post.objects.get(pk=pk) #url에서 받은 pk값과 일치하는 Post 가지고와라 # pk 없을시 DoesNotExits 에러발생한다.
-    # except Post.DoesNotExist:
-    #     raise Http404
-    post = get_object_or_404(Post, pk=pk) #위 try except를 간소화할수 있다.
+# def post_detail(request:HttpRequest, pk : int):# -> HttpResponse:
+#     # try:
+#     #     post = Post.objects.get(pk=pk) #url에서 받은 pk값과 일치하는 Post 가지고와라 # pk 없을시 DoesNotExits 에러발생한다.
+#     # except Post.DoesNotExist:
+#     #     raise Http404
+#     post = get_object_or_404(Post, pk=pk) #위 try except를 간소화할수 있다.
   
-    return render(request, "instagram/post_detail.html",{
-        'post':post,
-    })
-    #response = HttpResponse()
-    #response.write("Hello world")
-    #return response
+#     return render(request, "instagram/post_detail.html",{
+#         'post':post,
+#     })
+#     #response = HttpResponse()
+#     #response.write("Hello world")
+#     #return response
+post_detail = DetailView.as_view(model=Post)
 
 def archives_year(request, year):
     return HttpResponse(f"{year} archives")
