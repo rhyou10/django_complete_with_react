@@ -6,7 +6,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import Post
 from django.views.generic import ListView, DetailView
 
-post_list = ListView.as_view(model = Post) #클래스 기반 뷰 아직 검색기능 미구현
+post_list = ListView.as_view(model = Post, paginate_by = 10) #클래스 기반 뷰 아직 검색기능 미구현
 
 # def post_list(request):
 #     qs = Post.objects.all()
