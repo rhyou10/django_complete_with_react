@@ -5,9 +5,23 @@ from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render,get_object_or_404
 from .models import Post
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required # 장식자 호출
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-post_list = ListView.as_view(model = Post, paginate_by = 10) #클래스 기반 뷰 아직 검색기능 미구현
+# post_list = login_required(ListView.as_view(model = Post, paginate_by = 10)) #클래스 기반 뷰 아직 검색기능 미구현
 
+
+#@method_decorator(login_required, name = 'dispatch')
+class PostListView(LoginRequiredMixin ,ListView): # 장식자 로그인 접근방법과 상속을 통한 로그인 접속방법
+    model = Post
+    paginate_by = 10
+
+post_list = PostListView.as_view()
+
+
+
+# @login_required #로그인 여부, 안되어 있을시 로그인 페이지로 / 주소 defalut : accounts/login
 # def post_list(request):
 #     qs = Post.objects.all()
 #     q = request.GET.get('q', '') #url에서 post_list 함수를 호출시 해당 url에서 GET 해라 'q'라는 인자를 반환 # 'q' 가 없을시 '' 반환 (검색어저장)
