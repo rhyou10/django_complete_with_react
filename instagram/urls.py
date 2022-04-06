@@ -12,7 +12,7 @@ app_name = "instagram" #안넣어도 구동가능, URL_REVERSE에서 namespace �
 
 urlpatterns=[
     path('', views.post_list, name = 'post_list'),
-    path('<int:pk>/',views.post_detail),#re_path(r'(?P<pk>\d+)/$', views.post_detail), #위와 같은의미
+    path('<int:pk>/',views.post_detail, name='post_detail'),#re_path(r'(?P<pk>\d+)/$', views.post_detail), #위와 같은의미
 
     # path('archives/<year:year>/', views.archives_year),
     #path('archives/<int:year>/', views.archives_year),

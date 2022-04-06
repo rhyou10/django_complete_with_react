@@ -22,16 +22,22 @@
                     <td>
                         {{post.pk}}
                     </td>
-                    <td>
-                        {{post.message}}
-                    </td>
+
                     <td>
                         {% if post.photo %}
                             <img src="{{post.photo.url}}" style="width: 100px;">
                         {% else %}
                             no photo
                         {% endif %}
-                    </td>   
+                    </td>
+                    <td>
+                        <!--<a href="/instagram/{{post.pk}}/">이 방식은 instagram 자체 url 변경시 사용불가해진다. url-reverse 사용하는 이유 -->
+                            <!-- <a href={% url "instagram:post_detail" post.pk%} > url reverse 방식 -->
+                                <!--모델에 get_absolute_url 지정시-->
+                                <a href="{{post.get_absolute_url}}" >
+                            {{post.message}}
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

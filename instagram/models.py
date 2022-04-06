@@ -3,6 +3,7 @@ from distutils.command.upload import upload
 from django.db import models
 #from django.contrib.auth.models import User #굉장히 딱딱한 방식
 from django.conf import settings #user import의 다른 방식
+from django.urls import reverse
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -20,6 +21,9 @@ class Post(models.Model):
     def __str__(self): # admin에서 class -> list_display 설정하여 보이지 않는다
         #return f"Custom Post objects ({self.id}) " 
         return f"{self.pk} : {self.message}"
+
+    def get_absolute_url(self): # url-reverse위한 필수
+        return reverse('instagram:post_detail', args=[self.pk])
 
     class Meta: # 기본정렬 default 정렬
         ordering = ['-id']

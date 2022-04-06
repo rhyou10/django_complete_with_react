@@ -10,3 +10,6 @@ class YearConverter():
 
 class MonthConverter(YearConverter):
     regex = r"\d{1,2}" 
+
+class DayConverter(YearConverter):
+    regex = r"[0123]\d" #좀더 타이트하게 쓰는경우
