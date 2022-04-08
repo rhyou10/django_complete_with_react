@@ -15,7 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 #@method_decorator(login_required, name = 'dispatch')
 class PostListView(LoginRequiredMixin ,ListView): # 장식자 로그인 접근방법과 상속을 통한 로그인 접속방법
     model = Post
-    paginate_by = 10
+    paginate_by = 100
 
 post_list = PostListView.as_view()
 
