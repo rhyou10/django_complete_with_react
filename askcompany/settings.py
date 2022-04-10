@@ -135,7 +135,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField' # 3.2버전부터 primary key�
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = '' #todo
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")# 최종적으로 배포할때 정적 파일들을 한 곳에 모아야한다. 그때의 장소 python manage.py collectstatc
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'askcompany', 'static')
+]
 
 MEDIA_URL = '/media/'  # 미디어파일을 URL을통해 접근할때 쓰인다. 이미지 웹경로?
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #BASE_DIR/media 에 미디어 파일 받아서 저장
