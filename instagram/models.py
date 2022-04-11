@@ -4,10 +4,14 @@ from django.db import models
 #from django.contrib.auth.models import User #굉장히 딱딱한 방식
 from django.conf import settings #user import의 다른 방식
 from django.urls import reverse
+from django.core.validators import MinLengthValidator #모델폼에서 사용하는 검증방법
+
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    message = models.TextField()
+    message = models.TextField(
+        validators=[MinLengthValidator(3)] #3글자 이상만
+    )
     photo = models.ImageField(blank=True, upload_to='instagram/post/%Y%m%d') #upload setting에 설정된 media 안에 저장폴더 상세설정(너무많은 media 파일들을 관리하기위하여)
                                                                              # 이때 저장장소를 함수로 설정할경우(문자열로 반환) 파일명을 원하는 것으로 변경 가능
     tag_set = models.ManyToManyField('Tag', blank=True) #다대 다인경우 blank가 필요할수 있다.

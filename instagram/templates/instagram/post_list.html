@@ -7,7 +7,6 @@
 {% endblock title %}
 
 {% block content %}
-
     <script>
     if(1>0){
         console.log('script console test');
@@ -17,8 +16,11 @@
     <form action="" method="get"> <!--action이 비어있으므로 상대경로로 웹페이지 생성?-->
         <input type = 'text' name='q' value="{{q}}">
         <input type = 'submit' value="검색">
-
     </form>
+    
+    <a href='{% url 'instagram:post_new' %}' class='btn btn-primary btn-block mt-3 mb-3'>
+        새포스트
+    </a>
     <table class="table table-bordered table-hover"> <!--이 table은 bootstrap 가지고와서 쓸수있는거(디자인)-->
         <tbody>
             {% for post in post_list %}

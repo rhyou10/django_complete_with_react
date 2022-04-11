@@ -2,15 +2,29 @@ from email import message
 from http.client import HTTPResponse
 from urllib import response
 from django.http import HttpRequest, HttpResponse, Http404
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import redirect, render,get_object_or_404
 from .models import Post
 from django.views.generic import ListView, DetailView, ArchiveIndexView, YearArchiveView
 from django.contrib.auth.decorators import login_required # 장식자 호출
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import PostForm
 
 # post_list = login_required(ListView.as_view(model = Post, paginate_by = 10)) #클래스 기반 뷰 아직 검색기능 미구현
 
+
+def post_new(request): ##form 사용법
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post)
+    else:
+        form = PostForm()
+
+    return render(request, 'instagram/post_form.html', {
+        'form':form,
+    })
 
 #@method_decorator(login_required, name = 'dispatch')
 class PostListView(LoginRequiredMixin ,ListView): # 장식자 로그인 접근방법과 상속을 통한 로그인 접속방법
