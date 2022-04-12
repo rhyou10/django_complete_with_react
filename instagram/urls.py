@@ -14,6 +14,7 @@ urlpatterns=[
     path('new/', views.post_new, name='post_new' ),
     path('', views.post_list, name = 'post_list'),
     path('<int:pk>/',views.post_detail, name='post_detail'),#re_path(r'(?P<pk>\d+)/$', views.post_detail), #위와 같은의미
+    path('<int:pk>/edit/',views.post_edit, name='post_edit'),
 
     # path('archives/<year:year>/', views.archives_year),
     #path('archives/<int:year>/', views.archives_year),
