@@ -149,3 +149,13 @@ INTERNAL_IPS = [ #django_debug_toolbar를 위해서
     "127.0.0.1",
     # ...
 ]
+
+
+## messages.tags 변경
+from django.contrib.messages import constants as message_contants
+
+MESSAGE_TAGS = {
+    message_contants.DEBUG : 'secondary',
+    message_contants.ERROR : 'danger',
+}
+
