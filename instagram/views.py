@@ -64,12 +64,30 @@ def post_edit(request, pk):
         'post': post,
     })
 
+
+# 포스트 삭제
+@login_required 
+def post_delete(request, pk):
+    post = get_object_or_404(Post,pk=pk)
+    if request.method== 'POST':
+        post.delete()
+        messages.success(request, "포스팅을 삭제하였습니다.")
+        return redirect('instagram:post_list')
+
+    return render(request, 'instagram/post_confirm_delete.html',{
+        'post':post
+    })
+
+
+
+
+
 #@method_decorator(login_required, name = 'dispatch')
 class PostListView(LoginRequiredMixin ,ListView): # 장식자 로그인 접근방법과 상속을 통한 로그인 접속방법
     model = Post
     paginate_by = 100
 
-post_list = PostListView.as_view()
+post_list = PostListView.as_view(paginate_by=20)
 
 
 
