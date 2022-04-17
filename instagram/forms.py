@@ -16,8 +16,8 @@ class PostForm(forms.ModelForm):
 
     def clean_message(self):# 유효성검사시 자동으로 실행된다. / clean_필드명으로 필드에 유효성검사
         message = self.cleaned_data.get('message')
-        if message:
-            message = re.sub('[a-zA-z]', '', message)
+        # if message:
+        #     message = re.sub('[a-zA-z]', '', message)
         
         return message
 
