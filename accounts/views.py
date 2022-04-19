@@ -1,4 +1,5 @@
-from django.contrib.auth import get_user_model
+from urllib import response
+from django.contrib.auth import get_user_model, login as auth_login
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required 
@@ -47,12 +48,17 @@ def profile_edit(request):
         'form':form,
     })
 
-signup = CreateView.as_view(
-    model = User,
-    form_class=UserCreationForm,
-    success_url=settings.LOGIN_URL,
-    template_name = 'accounts/sign_up.html',
-)
+class SignUpView(CreateView):
+    model = User
+    form_class=UserCreationForm
+    success_url=settings.LOGIN_REDIRECT_URL
+    template_name = 'accounts/sign_up.html'
 
-def logout(request):
-    pass
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = self.object #방금 가입한 유저를 가지고온다
+        auth_login(self.request, user) # 회원가입 즉시 로그인했다.
+        return  response
+
+
+signup = SignUpView.as_view()
