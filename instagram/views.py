@@ -115,7 +115,7 @@ post_delete = PostDeleteView.as_view()
 
 
 #@method_decorator(login_required, name = 'dispatch')
-class PostListView(LoginRequiredMixin ,ListView): # 장식자 로그인 접근방법과 상속을 통한 로그인 접속방법
+class PostListView(ListView): # 장식자 로그인 접근방법과 상속을 통한 로그인 접속방법
     model = Post
     paginate_by = 100
 
