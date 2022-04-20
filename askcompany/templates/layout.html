@@ -54,7 +54,7 @@
                       <a class="nav-link" href="{% url 'profile' %}">프로필</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'logout' %}?next={{request.get_full_path}}">로그아웃</a>
+                      <a class="nav-link" href="{% url 'logout' %}?next={{request.get_full_path}}">로그아웃</a> <!--?next={{request.get_full_path}} 를 통해 원래있더 페이지로 돌아간다.-->
                     </li>
                   {% else %}
                     <li class="nav-item">
